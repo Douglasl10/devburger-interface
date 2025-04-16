@@ -14,6 +14,7 @@ background: linear-gradient(
  ),
   url('${Background}');
   background-position: center;
+  background-size: calc(50vw);
 `;
 
 export const Banner = styled.div`
@@ -81,7 +82,10 @@ margin: 50px auto;
 export const ExitButton = styled(Link) `
 font-size: 32px;
 font-weight: bold;
-padding-top: 5px;
-line-height: 20px;
-color: #9758a6;
+line-height: 40px;
+color:rgb(255, 255, 255);
+background-color: #9758a6;
+border-radius: 16px;
+border: 2px solid rgb(81, 27, 95);
+padding: 18px;
 `;

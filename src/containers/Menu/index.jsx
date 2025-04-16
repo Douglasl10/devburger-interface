@@ -95,7 +95,7 @@ export function Menu() {
             </ProductsContainer>
             <ExitButton onClick={() => {
                 navigate({
-                    pathname: '/'
+                    pathname: '/carrinho',
                 });
             }}>Voltar</ExitButton>
         </Container>

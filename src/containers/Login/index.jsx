@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Login() {
     const navigate = useNavigate();
-    const {putUserData} = useUser();
+    const { putUserData } = useUser();
 
     const schema = yup.object({
         email: yup.string().email('Digite um e-mail Válido').required('O e-mail é obrigatorio'),
@@ -24,17 +24,24 @@ export function Login() {
         });
     const onSubmit = async data => {
 
-        const {data: userData} = await toast.promise(
+        const { data: userData } = await toast.promise(
             api.post('/session', {
                 email: data.email,
                 password: data.password,
             }),
             {
                 pending: 'Verifique seus dados',
-                success:{
-                    render(){
+                success: {
+                    render() {
                         setTimeout(() => {
-                            navigate('/');
+                            if (userData.admin) {
+
+                                navigate('/admin/pedidos');
+
+                            } else {
+                                navigate('/');
+                            }
+
                         }, 2000);
                         return 'Seja bem-vindo(a) 👌'
                     }
@@ -44,7 +51,7 @@ export function Login() {
         );
 
         putUserData(userData);
-        
+
     };
 
     return (

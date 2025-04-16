@@ -1,10 +1,13 @@
-import { Table } from '../index';
+import TrashIcon from '../../assets/trash.svg'
 import { useCart } from '../../hooks/CartContext';
+import { formatPrice } from '../../utils/formatPrice';
+import { Table } from '../index';
+import { ButtonGroup, EmptyCart, ProductImage, ProductTotalPrice, TrashImage } from './styles';
+
 
 export function CartItems() {
-    const { cartProducts, increaseProducts, decreaseProduct } = useCart()
-    
-    
+    const { cartProducts, inCreaseProduct, decreaseProduct, deleteProduct } = useCart()
+
     return (
         <Table.Root>
             <Table.Header>
@@ -14,6 +17,7 @@ export function CartItems() {
                     <Table.Th>Preço</Table.Th>
                     <Table.Th>Quantidade</Table.Th>
                     <Table.Th>Total</Table.Th>
+                    <Table.Th></Table.Th>
                 </Table.Tr>
             </Table.Header>
 
@@ -21,23 +25,37 @@ export function CartItems() {
                 {cartProducts?.length ? (
                     cartProducts.map(product => (
                         <Table.Tr key={product.id}>
+                            <Table.Td>
+                                <ProductImage src={product.url} />
+                            </Table.Td>
+                            <Table.Td>
+                                {product.name}
+                            </Table.Td>
+                            <Table.Td>
+                                {product.currencyValue}
+                            </Table.Td>
+                            <Table.Td>
+
+                                <ButtonGroup>
+                                    <button onClick={() => decreaseProduct(product.id)}>-</button>
+                                    {product.quantity}
+                                    <button onClick={() => inCreaseProduct(product.id)}>+</button>
+                                </ButtonGroup>
+                                
+                            </Table.Td>
+                            <Table.Td>
+                                <ProductTotalPrice>
+                                {formatPrice(product.quantity * product.price)}
+                                </ProductTotalPrice>
+                            </Table.Td>
                         <Table.Td>
-                            <img src={product.url}/>
+                            <TrashImage src={TrashIcon}  alt="lixeira" onClick={() => deleteProduct(product.id)}/>
                         </Table.Td>
-                        <Table.Td>
-                            {product.name}
-                        </Table.Td>
-                        <Table.Td>
-                            {product.currencyValue}
-                        </Table.Td>
-                        <Table.Td>
-                            {product.quantity}
-                        </Table.Td>
-                        
                         </Table.Tr>
+
                     ))
-                ) :  (<div>carrinho vazio</div>
-            )}
+                ) : (<EmptyCart>carrinho vazio</EmptyCart>
+                )}
             </Table.Body>
         </Table.Root>
     );

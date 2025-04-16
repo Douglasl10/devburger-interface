@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div `
-background-color:  #1f1f1f;
+background-color: ${Props => Props.theme.mainBlack};;
 width: 100%;
 height: 72px;
 padding: 0 56px;
@@ -40,7 +40,7 @@ div{
 
 export const HeaderLink = styled(Link) `
 color: ${Props => Props.$isActive ? '#9758a6' : '#fff'};
-border-bottom: ${props => props.$isActive ? '1px solid #9758a6' : 'none'};
+border-bottom: ${props => props.$isActive ? '1px solid #9758a6' : 'none'}; 
 padding-bottom: 5px;
 text-decoration: none;
 font-size: 14px;
@@ -92,7 +92,7 @@ border: none;
 
 
 
-
+//${(props) => props.theme.mainBlack}  modo para pegar a cor do tema de forma dinamica
 
 
 
