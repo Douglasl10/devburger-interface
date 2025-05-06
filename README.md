@@ -73,4 +73,4 @@ Editar
 npm start
 <br>
 Lembre-se de que é necessário rodar o back-end em paralelo para que as funcionalidades de pedidos funcionem corretamente.
-<img src="https://raw.githubusercontent.com/Douglasl10/devburger-interface/refs/heads/main/img/DevBurger-Home.png"/>
+<img src="https://raw.githubusercontent.com/Douglasl10/devburger-interface/refs/heads/main/img/capa.png"/>
